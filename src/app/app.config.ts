@@ -16,7 +16,8 @@ export const appConfig: ApplicationConfig = {
       domain: `${ENV.auth.domain}`,
       clientId: `${ENV.auth.clientId}`,
       authorizationParams: {
-        redirect_uri: 'http://localhost:4200/home',
+        redirect_uri: 'https://sputnik-crm.vercel.app/home',
+
         audience: 'https://dev-1dha8qt8zf60zyxc.us.auth0.com/api/v2/',
         scope: 'openid profile email',
       },
