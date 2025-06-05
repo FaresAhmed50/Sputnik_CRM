@@ -21,7 +21,11 @@ export class AppComponent {
   Role !: string;
 
   logout(): void {
-    this._Auth0Service.authService?.logout();
+    this._Auth0Service.authService?.logout({
+      logoutParams : {
+        redirect_uri : `${ENV.auth.authorizationParams.redirect_uri}`,
+      }
+    });
   }
 
   login(): any {
