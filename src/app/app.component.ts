@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
-import { GridModule, PagerModule } from '@syncfusion/ej2-angular-grids';
-import { CalendarModule } from '@syncfusion/ej2-angular-calendars'
+import {Component, inject} from '@angular/core';
+import {Auth0Service} from './Core/services/Auth0/auth0.service';
+import {Router, RouterOutlet} from '@angular/router';
+import {first} from 'rxjs';
 
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [GridModule, PagerModule , CalendarModule],
+  imports: [
+    RouterOutlet
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'Sputnik-CRM';

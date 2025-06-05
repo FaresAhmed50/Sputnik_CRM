@@ -8,5 +8,5 @@ import { registerLicense } from '@syncfusion/ej2-base';
 
 registerLicense(`${environment.syncfusionKey}`);
 
-bootstrapApplication(AppComponent, appConfig)
+bootstrapApplication(AppComponent ,appConfig)
   .catch((err) => console.error(err));
