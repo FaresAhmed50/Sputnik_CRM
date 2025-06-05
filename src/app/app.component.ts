@@ -2,7 +2,7 @@ import {Component, inject} from '@angular/core';
 import {Auth0Service} from './Core/services/Auth0/auth0.service';
 import {Router, RouterOutlet} from '@angular/router';
 import {first} from 'rxjs';
-
+import {environment as ENV} from '../environments/environment'
 
 @Component({
   selector: 'app-root',
