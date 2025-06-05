@@ -9,16 +9,31 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(),
-    provideAuth0({
-      domain : `${ENV.auth.domain}`,
-      clientId : `${ENV.auth.clientId}`,
-      authorizationParams : {
-        redirect_uri : 'http://localhost:4200',
-        audience : 'https://dev-1dha8qt8zf60zyxc.us.auth0.com/api/v2/',
-        scope : 'openid profile email',
-      },
-      useRefreshTokens : true,
-      cacheLocation : "localstorage",
-    })
+    {
+      provide : AuthClientConfig,
+      useFactory: ()=> {
+        const platformID = inject(PLATFORM_ID);
+        const isBrowser = isPlatformBrowser(platformID);
+
+        if (isBrowser) {
+          const auth0Provider = provideAuth0({
+            domain : `${ENV.auth.domain}`,
+            clientId : `${ENV.auth.clientId}`,
+            authorizationParams : {
+              redirect_uri : 'http://localhost:4200',
+              audience : 'https://dev-1dha8qt8zf60zyxc.us.auth0.com/api/v2/',
+              scope : 'openid profile email',
+            },
+            useRefreshTokens : true,
+            cacheLocation : "localstorage",
+          });
+          return auth0Provider;
+        }
+        return new AuthClientConfig();
+
+
+
+      }
+    }
   ]
 };
